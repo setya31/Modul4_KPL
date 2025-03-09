@@ -15,6 +15,15 @@ class Program
         karakter.TombolS();
 
         Console.WriteLine("\nMenekan TombolW:");
-        karakter.TombolW();
+        karakter.TombolW(); 
+
+        Console.WriteLine("\nMenekan TombolX:");
+        karakter.TombolX(); 
+
+        Console.WriteLine("\nMenekan TombolW lagi:");
+        karakter.TombolW(); 
+
+        Console.WriteLine("\nMenekan TombolS lagi:");
+        karakter.TombolS(); 
     }
 }

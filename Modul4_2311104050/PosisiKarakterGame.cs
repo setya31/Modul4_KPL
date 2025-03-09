@@ -4,57 +4,61 @@ class PosisiKarakterGame
 {
     public enum State { Berdiri, Jongkok, Tengkurap, Terbang }
     private State posisi;
+    private int modNIM; 
 
     public PosisiKarakterGame()
     {
         posisi = State.Berdiri;
     }
 
+    public void SetNIM(long nim)
+    {
+        modNIM = (int)(nim % 3); 
+        Console.WriteLine($"NIM Anda: {nim}");
+        Console.WriteLine($"Hasil NIM % 3 = {modNIM}\n");
+    }
+
     public void TombolS()
     {
-        if (posisi == State.Berdiri)
+        switch (posisi)
         {
-            posisi = State.Jongkok;
-            Console.WriteLine("Karakter jongkok");
-        }
-        else if (posisi == State.Terbang)
-        {
-            posisi = State.Jongkok;
-            Console.WriteLine("Posisi landing");
+            case State.Berdiri:
+                posisi = State.Jongkok;
+                Console.WriteLine("Karakter jongkok");
+                if (modNIM == 0) Console.WriteLine("Tombol arah bawah ditekan");
+                break;
+            case State.Terbang:
+                posisi = State.Jongkok;
+                Console.WriteLine("Posisi landing");
+                if (modNIM == 2) Console.WriteLine("Posisi landing");
+                break;
         }
     }
 
     public void TombolW()
     {
-        if (posisi == State.Jongkok)
+        switch (posisi)
         {
-            posisi = State.Berdiri;
-            Console.WriteLine("Karakter berdiri");
-        }
-        else if (posisi == State.Berdiri)
-        {
-            posisi = State.Terbang;
-            Console.WriteLine("Posisi take off");
+            case State.Jongkok:
+                posisi = State.Berdiri;
+                Console.WriteLine("Karakter berdiri");
+                if (modNIM == 1) Console.WriteLine("Posisi standby");
+                break;
+            case State.Berdiri:
+                posisi = State.Terbang;
+                Console.WriteLine("Posisi take off");
+                if (modNIM == 0) Console.WriteLine("Tombol arah atas ditekan");
+                if (modNIM == 2) Console.WriteLine("Posisi take off");
+                break;
         }
     }
 
-    public void SetNIM(long nim)
+    public void TombolX()
     {
-        int mod = (int)(nim % 3);
-        switch (mod)
+        if (posisi == State.Berdiri && modNIM == 1)
         {
-            case 0:
-                Console.WriteLine("Mode: TombolS menampilkan 'tombol arah bawah ditekan'");
-                Console.WriteLine("Mode: TombolW menampilkan 'tombol arah atas ditekan'");
-                break;
-            case 1:
-                Console.WriteLine("Mode: Saat Berdiri -> 'posisi standby'");
-                Console.WriteLine("Mode: Saat Tengkurap -> 'posisi istirahat'");
-                break;
-            case 2:
-                Console.WriteLine("Mode: Saat Terbang ke Jongkok -> 'posisi landing'");
-                Console.WriteLine("Mode: Saat Berdiri ke Terbang -> 'posisi take off'");
-                break;
+            posisi = State.Tengkurap;
+            Console.WriteLine("Posisi istirahat");
         }
     }
 }
