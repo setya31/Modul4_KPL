@@ -1,2 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Masukkan nama buah: ");
+        string namaBuah = Console.ReadLine();
+
+        string kode = KodeBuah.GetKodeBuah(namaBuah);
+
+        Console.WriteLine($"Kode buah untuk {namaBuah}: {kode}");
+    }
+}
