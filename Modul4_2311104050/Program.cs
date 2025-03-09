@@ -4,11 +4,17 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Masukkan nama buah: ");
-        string namaBuah = Console.ReadLine();
+        PosisiKarakterGame karakter = new PosisiKarakterGame();
 
-        string kode = KodeBuah.GetKodeBuah(namaBuah);
+        Console.Write("Masukkan NIM Anda: ");
+        long nim = Convert.ToInt64(Console.ReadLine());
 
-        Console.WriteLine($"Kode buah untuk {namaBuah}: {kode}");
+        karakter.SetNIM(nim);
+
+        Console.WriteLine("\nMenekan TombolS:");
+        karakter.TombolS();
+
+        Console.WriteLine("\nMenekan TombolW:");
+        karakter.TombolW();
     }
 }
